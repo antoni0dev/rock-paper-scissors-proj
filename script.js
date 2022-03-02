@@ -1,8 +1,9 @@
 const GAME_DURATION = 5; 
-
-const getUserChoice = () => {
-    return prompt("What is your selection?").toUpperCase(); // Take input from the user
-};  
+const scoreboard = document.querySelector('#scoreboard');
+const buttons = document.querySelectorAll('button');
+let roundCount = 0;
+let playerCount = 0;
+let computerCount = 0;
 
 const getComputerChoice = () => {
     const myArray = ["ROCK", "PAPER", "SCISSORS"];
@@ -45,37 +46,6 @@ function playRound(playerSelection, computerSelection, roundNumber) {
     }
 };
 
-function playWholeGame() {
-
-    // Declare a counter variable to keep track of what the result of each player is
-    let playerCount = 0;
-    let computerCount = 0;
-
-    // Loop through the number of rounds of a whole game specified as a global variable in the beginning of the program and increment the winner of each round or both if it was a draw with 1.
-
-    for(i = 0; i < GAME_DURATION; i++) {
-        let computerSelection = getComputerChoice();
-        let playerSelection = getUserChoice();
-
-        let currentRound = playRound(playerSelection, computerSelection, i + 1); // Plays the current round and saves the result string in a variable
-
-        if (currentRound.indexOf('win') != -1) {
-            playerCount++;
-        }
-        else if (currentRound.indexOf('lose') != -1) {
-            computerCount ++;
-        }
-        else {
-            playerCount++;
-            computerCount++;
-        }
-
-        console.log(currentRound);
-    }
-
-    // Print the returned result of decideWinner()
-    console.log(decideWinner(playerCount, computerCount));
-}
 
 function decideWinner(playerCount, computerCount) {
     if (playerCount > computerCount) {
@@ -89,6 +59,30 @@ function decideWinner(playerCount, computerCount) {
     }
 }
 
-// Run the program
+buttons.forEach(b => b.addEventListener('click', () => {
 
-playWholeGame();
+    let computerSelection = getComputerChoice();    
+
+    let currentRound = playRound(b.value, computerSelection, roundCount + 1);
+    const para = document.createElement('p');
+    para.textContent = currentRound;
+    scoreboard.appendChild(para);
+
+    if (currentRound.indexOf('win') != -1) {
+        playerCount++;
+    }
+    else if (currentRound.indexOf('lose') != -1) {
+        computerCount ++;
+    }
+
+    roundCount++; 
+
+    if (playerCount === GAME_DURATION || computerCount === GAME_DURATION) {
+        const para = document.createElement('p');
+        para.textContent = decideWinner(playerCount, computerCount);
+        scoreboard.appendChild(para);
+        setTimeout(function(){
+            window.location.reload(1);
+            }, 3000);
+    }       
+}));

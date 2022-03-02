@@ -1,0 +1,39 @@
+html {
+    box-sizing: border-box;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+
+  header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  body {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 20px;
+      background-color: orange;
+      color: royalblue;
+      position: relative;
+  }
+
+  h1 {
+    
+      margin: 0;
+      padding: 0;
+  }
+
+  .container {
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .rps-image {
+      width: 400px;
+      height: 400px;
+  }
