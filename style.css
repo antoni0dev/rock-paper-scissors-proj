@@ -19,13 +19,7 @@ html {
       color: royalblue;
       position: relative;
   }
-
-  h1 {
-    
-      margin: 0;
-      padding: 0;
-  }
-
+  
   .container {
       display: flex;
       flex-flow: column wrap;
