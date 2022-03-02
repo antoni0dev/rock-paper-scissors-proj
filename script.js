@@ -59,7 +59,7 @@ function decideWinner(playerCount, computerCount) {
     }
 }
 
-buttons.forEach(b => b.addEventListener('click', () => {
+buttons.forEach(b => b.addEventListener('click', () => {    
 
     let computerSelection = getComputerChoice();    
 
